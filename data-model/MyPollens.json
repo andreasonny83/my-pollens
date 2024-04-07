@@ -1,0 +1,529 @@
+{
+  "ModelName": "MyPollens",
+  "ModelMetadata": {
+    "Author": "andreasonny83",
+    "DateCreated": "Apr 07, 2024, 02:25 PM",
+    "DateLastModified": "Apr 07, 2024, 05:01 PM",
+    "Description": "MyPollen API",
+    "AWSService": "Amazon DynamoDB",
+    "Version": "3.0"
+  },
+  "DataModel": [
+    {
+      "TableName": "MyPollensTable",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "PK",
+          "AttributeType": "S"
+        },
+        "SortKey": {
+          "AttributeName": "SK",
+          "AttributeType": "S"
+        }
+      },
+      "NonKeyAttributes": [
+        {
+          "AttributeName": "entityType",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "userId",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "displayName",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "email",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "pollenCode",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "pollenType",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "pollenFamily",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "pollenSeason",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "pollenCrossReaction",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "pollenIndexDisplayName",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "pollenIndexCode",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "allergyLv",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "date",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "pollenId",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "pollenValue",
+          "AttributeType": "N"
+        }
+      ],
+      "TableData": [
+        {
+          "PK": {
+            "S": "U#001"
+          },
+          "SK": {
+            "S": "U#001"
+          },
+          "entityType": {
+            "S": "user"
+          },
+          "userId": {
+            "S": "001"
+          },
+          "displayName": {
+            "S": "test user 1"
+          },
+          "email": {
+            "S": "user@gmail.com"
+          }
+        },
+        {
+          "PK": {
+            "S": "P#001"
+          },
+          "SK": {
+            "S": "P#001"
+          },
+          "entityType": {
+            "S": "pollen"
+          },
+          "displayName": {
+            "S": "Grass"
+          },
+          "pollenCode": {
+            "S": "GRASS"
+          },
+          "pollenIndexDisplayName": {
+            "S": "Universal Pollen Index"
+          },
+          "pollenIndexCode": {
+            "S": "UPI"
+          }
+        },
+        {
+          "PK": {
+            "S": "P#001"
+          },
+          "SK": {
+            "S": "P#002"
+          },
+          "entityType": {
+            "S": "pollen"
+          },
+          "displayName": {
+            "S": "Tree"
+          },
+          "pollenCode": {
+            "S": "TREE"
+          },
+          "pollenIndexDisplayName": {
+            "S": "Universal Pollen Index"
+          },
+          "pollenIndexCode": {
+            "S": "UPI"
+          }
+        },
+        {
+          "PK": {
+            "S": "P#001"
+          },
+          "SK": {
+            "S": "P#003"
+          },
+          "entityType": {
+            "S": "pollen"
+          },
+          "displayName": {
+            "S": "Weed"
+          },
+          "pollenCode": {
+            "S": "WEED"
+          }
+        },
+        {
+          "PK": {
+            "S": "P#001"
+          },
+          "SK": {
+            "S": "P#004"
+          },
+          "entityType": {
+            "S": "pollen"
+          },
+          "displayName": {
+            "S": "Birch"
+          },
+          "pollenCode": {
+            "S": "BIRCH"
+          },
+          "pollenType": {
+            "S": "TREE"
+          },
+          "pollenFamily": {
+            "S": "Betulaceae (the Birch family)"
+          },
+          "pollenSeason": {
+            "S": "Late winter, spring"
+          },
+          "pollenCrossReaction": {
+            "S": "Alder, Hazel, Hornbeam, Beech, Willow, and Oak pollen. In addition, there may be a higher risk for food allergies like hazelnuts, almonds, peanuts, pears, apples, cherries and carrots."
+          },
+          "pollenIndexDisplayName": {
+            "S": "Universal Pollen Index"
+          },
+          "pollenIndexCode": {
+            "S": "UPI"
+          }
+        },
+        {
+          "PK": {
+            "S": "P#001"
+          },
+          "SK": {
+            "S": "P#005"
+          },
+          "entityType": {
+            "S": "pollen"
+          },
+          "displayName": {
+            "S": "Olive"
+          },
+          "pollenCode": {
+            "S": "OLIVE"
+          },
+          "pollenType": {
+            "S": "TREE"
+          },
+          "pollenFamily": {
+            "S": "Oleaceae (the Olive family)"
+          },
+          "pollenSeason": {
+            "S": "Late spring, early summer"
+          },
+          "pollenCrossReaction": {
+            "S": "Ash and Privet pollen."
+          },
+          "pollenIndexDisplayName": {
+            "S": "Universal Pollen Index"
+          },
+          "pollenIndexCode": {
+            "S": "UPI"
+          }
+        },
+        {
+          "PK": {
+            "S": "P#001"
+          },
+          "SK": {
+            "S": "P#006"
+          },
+          "entityType": {
+            "S": "pollen"
+          },
+          "displayName": {
+            "S": "Grasses"
+          },
+          "pollenCode": {
+            "S": "GRAMINALES"
+          },
+          "pollenType": {
+            "S": "GRASS"
+          },
+          "pollenFamily": {
+            "S": "Poaceae"
+          },
+          "pollenSeason": {
+            "S": "Late spring, summer"
+          },
+          "pollenCrossReaction": {
+            "S": "Plantain (Plantago) pollen. In addition, there may be a higher risk for food allergies like melons, oranges, tomatoes, peanuts, soy, potato, and other legumes."
+          },
+          "pollenIndexDisplayName": {
+            "S": "Universal Pollen Index"
+          },
+          "pollenIndexCode": {
+            "S": "UPI"
+          }
+        },
+        {
+          "PK": {
+            "S": "P#001"
+          },
+          "SK": {
+            "S": "P#007"
+          },
+          "entityType": {
+            "S": "pollen"
+          },
+          "displayName": {
+            "S": "Ragweed"
+          },
+          "pollenCode": {
+            "S": "RAGWEED"
+          }
+        },
+        {
+          "PK": {
+            "S": "P#001"
+          },
+          "SK": {
+            "S": "P#008"
+          },
+          "entityType": {
+            "S": "pollen"
+          },
+          "displayName": {
+            "S": "Alder"
+          },
+          "pollenCode": {
+            "S": "ALDER"
+          },
+          "pollenType": {
+            "S": "TREE"
+          },
+          "pollenFamily": {
+            "S": "Betulaceae (the Birch family)"
+          },
+          "pollenSeason": {
+            "S": "Late winter, early spring"
+          },
+          "pollenCrossReaction": {
+            "S": "Birch, Hazel, Hornbeam, Beech, Willow and Oak pollen."
+          },
+          "pollenIndexDisplayName": {
+            "S": "Universal Pollen Index"
+          },
+          "pollenIndexCode": {
+            "S": "UPI"
+          }
+        },
+        {
+          "PK": {
+            "S": "P#001"
+          },
+          "SK": {
+            "S": "P#009"
+          },
+          "entityType": {
+            "S": "pollen"
+          },
+          "displayName": {
+            "S": "Mugwort"
+          },
+          "pollenType": {
+            "S": "MUGWORT"
+          }
+        },
+        {
+          "PK": {
+            "S": "UP#001"
+          },
+          "SK": {
+            "S": "PD#001"
+          },
+          "entityType": {
+            "S": "user_pollen"
+          },
+          "allergyLv": {
+            "S": "1"
+          },
+          "date": {
+            "S": "2019-01-01"
+          },
+          "pollenId": {
+            "S": "1"
+          },
+          "pollenValue": {
+            "N": "1"
+          }
+        },
+        {
+          "PK": {
+            "S": "UP#001"
+          },
+          "SK": {
+            "S": "PD#002"
+          },
+          "entityType": {
+            "S": "user_pollen"
+          },
+          "allergyLv": {
+            "S": "1"
+          },
+          "date": {
+            "S": "2019-01-01"
+          },
+          "pollenId": {
+            "S": "2"
+          },
+          "pollenValue": {
+            "N": "2"
+          }
+        },
+        {
+          "PK": {
+            "S": "UP#001"
+          },
+          "SK": {
+            "S": "PD#003"
+          },
+          "entityType": {
+            "S": "user_pollen"
+          },
+          "allergyLv": {
+            "S": "1"
+          },
+          "date": {
+            "S": "2019-01-01"
+          },
+          "pollenId": {
+            "S": "3"
+          },
+          "pollenValue": {
+            "N": "2"
+          }
+        },
+        {
+          "PK": {
+            "S": "UP#001"
+          },
+          "SK": {
+            "S": "PD#004"
+          },
+          "entityType": {
+            "S": "user_pollen"
+          },
+          "allergyLv": {
+            "S": "2"
+          },
+          "date": {
+            "S": "2020-01-01"
+          },
+          "pollenId": {
+            "S": "1"
+          },
+          "pollenValue": {
+            "N": "2"
+          }
+        },
+        {
+          "PK": {
+            "S": "UP#001"
+          },
+          "SK": {
+            "S": "PD#005"
+          },
+          "entityType": {
+            "S": "user_pollen"
+          },
+          "allergyLv": {
+            "S": "2"
+          },
+          "date": {
+            "S": "2020-01-01"
+          },
+          "pollenId": {
+            "S": "2"
+          },
+          "pollenValue": {
+            "N": "1"
+          }
+        },
+        {
+          "PK": {
+            "S": "UP#001"
+          },
+          "SK": {
+            "S": "PD#006"
+          },
+          "entityType": {
+            "S": "user_pollen"
+          },
+          "allergyLv": {
+            "S": "2"
+          },
+          "date": {
+            "S": "2020-01-01"
+          },
+          "pollenId": {
+            "S": "3"
+          },
+          "pollenValue": {
+            "N": "1"
+          }
+        }
+      ],
+      "DataAccess": {
+        "MySql": {}
+      },
+      "SampleDataFormats": {
+        "id": [
+          "identifiers",
+          "UUID"
+        ],
+        "s": [
+          "identifiers",
+          "UUID"
+        ],
+        "code": [
+          "dataTypes",
+          "String"
+        ]
+      },
+      "BillingMode": "PROVISIONED",
+      "ProvisionedCapacitySettings": {
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        },
+        "AutoScalingRead": {
+          "ScalableTargetRequest": {
+            "MinCapacity": 1,
+            "MaxCapacity": 10,
+            "ServiceRole": "AWSServiceRoleForApplicationAutoScaling_DynamoDBTable"
+          },
+          "ScalingPolicyConfiguration": {
+            "TargetValue": 70
+          }
+        },
+        "AutoScalingWrite": {
+          "ScalableTargetRequest": {
+            "MinCapacity": 1,
+            "MaxCapacity": 10,
+            "ServiceRole": "AWSServiceRoleForApplicationAutoScaling_DynamoDBTable"
+          },
+          "ScalingPolicyConfiguration": {
+            "TargetValue": 70
+          }
+        }
+      }
+    }
+  ]
+}

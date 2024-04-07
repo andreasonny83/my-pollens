@@ -2,7 +2,7 @@ import type { PollenCode, PollenType } from '../types';
 
 export const generatePollenCode = (pollenTypeCode: PollenCode, plantDescriptionType?: PollenType) => {
   if (plantDescriptionType) {
-    return `PC-${plantDescriptionType}-${pollenTypeCode}`;
+    return `P#${plantDescriptionType}_${pollenTypeCode}`;
   }
-  return `PC-${pollenTypeCode}`;
+  return `P#${pollenTypeCode}`;
 };

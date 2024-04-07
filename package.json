@@ -7,6 +7,7 @@
     "sls:start": "serverless offline start",
     "local:db:migrate": "node scripts/migrate.js",
     "dynamodb-local": "sls dynamodb install",
+    "dynamo:upload": "ts-node-dev scripts/dynamo-upload.ts",
     "start": "ts-node-dev --respawn src/index.ts",
     "test": "ts-node-dev --respawn src/**/*.spec.ts",
     "build": "rm -rf dist && tsc",
@@ -18,10 +19,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.549.0",
+    "@aws-sdk/lib-dynamodb": "^3.549.0",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
-    "googleapis": "^134.0.0",
-    "redis": "^4.6.13"
+    "googleapis": "^134.0.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.137",

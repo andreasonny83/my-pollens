@@ -44,26 +44,10 @@ functions:
       individually: false
     environment:
       GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
-      # REDIS_URL: ${env:REDIS_URL}
-      # REDIS_PORT: ${env:REDIS_PORT}
-      # FETCH_FUNCTION_NAME: ${self:service}-${self:provider.stage}-GoogleFetchFunction
     events:
       - http:
           path: log
           method: POST
-    # vpc:
-    #   securityGroupIds:
-    #     - !GetAtt LambdaExecutionSecurityGroup.GroupId
-    #   subnetIds:
-    #     - subnet-xxx
-    #     - subnet-xxx
-
-  # GoogleFetchFunction:
-  #   handler: src/google-fetch.handler
-  #   package:
-  #     individually: false
-  #   environment:
-  #     GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
 
 resources:
   Resources:
@@ -110,37 +94,6 @@ resources:
                         - Ref: 'AWS::AccountId'
                         - 'log-group:/aws/lambda/${self:service}-${self:provider.stage}-PollenFunction:*'
 
-          # - PolicyName: lambda-redis-access
-          #   PolicyDocument:
-          #     Version: '2012-10-17'
-          #     Statement:
-          #       - Effect: Allow
-          #         Action:
-          #           - elasticache:DescribeCacheClusters
-          #           - elasticache:DescribeCacheParameters
-          #           - elasticache:DescribeCacheSecurityGroups
-          #           - elasticache:DescribeCacheSubnetGroups
-          #         Resource:
-          #           Fn::Sub: arn:aws:elasticache:${AWS::Region}:${AWS::AccountId}:cluster:${MyCacheCluster}
-          # - PolicyName: lambda-vpc-access
-          #   PolicyDocument:
-          #     Version: '2012-10-17'
-          #     Statement:
-          #       - Effect: Allow
-          #         Action:
-          #           - ec2:CreateNetworkInterface
-          #           - ec2:DescribeNetworkInterfaces
-          #           - ec2:DeleteNetworkInterface
-          #         Resource: '*'
-          # - PolicyName: lambda-invoke-access
-          #   PolicyDocument:
-          #     Version: '2012-10-17'
-          #     Statement:
-          #       - Effect: Allow
-          #         Action:
-          #           - lambda:*
-          #         Resource: "*"
-
     PollensTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -152,31 +105,3 @@ resources:
           - AttributeName: id
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
-
-    # LambdaExecutionSecurityGroup:
-    #   Type: AWS::EC2::SecurityGroup
-    #   Properties:
-    #     GroupDescription: Security group for Lambda function
-    #     VpcId: ${env:VPC_ID}
-
-    # MySecurityGroup:
-    #   Type: AWS::EC2::SecurityGroup
-    #   Properties:
-    #     GroupDescription: Security group for Lambda function to access ElastiCache
-    #     VpcId: ${env:VPC_ID}
-    #     SecurityGroupIngress:
-    #       - IpProtocol: tcp
-    #         FromPort: 6379 # Redis port
-    #         ToPort: ${env:REDIS_PORT} # Redis port from .env. Make sure it's defined as a number
-    #         SourceSecurityGroupId:
-    #           Fn::GetAtt: [LambdaExecutionSecurityGroup, GroupId]
-
-    # MyCacheCluster:
-    #   Type: AWS::ElastiCache::CacheCluster
-    #   Properties:
-    #     CacheNodeType: cache.t2.micro
-    #     Engine: redis
-    #     NumCacheNodes: 1
-    #     VpcSecurityGroupIds:
-    #       - !GetAtt MySecurityGroup.GroupId
-    #     CacheSubnetGroupName: default

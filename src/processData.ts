@@ -1,5 +1,5 @@
 import type { UserLocation } from './types';
-import { fetchPollenData } from './utils/fetch-google-data';
+import { fetchPollenData } from './utils/fetch-pollens-data';
 import { generatePollenCode } from './utils/generate-data-entries';
 import 'dotenv/config';
 
@@ -33,7 +33,6 @@ export async function processData(userId: string, userLocation: UserLocation) {
 
         return {
           code: generatePollenCode(pollenType.code, pollenType.plantDescription?.type),
-          displayName: pollenType.displayName,
           value: pollenType.indexInfo?.value,
         };
       })
