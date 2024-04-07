@@ -1,0 +1,36 @@
+{
+  "name": "my-pollens",
+  "version": "1.0.0",
+  "description": "Test API for Pollens data collection",
+  "main": "index.js",
+  "scripts": {
+    "sls:start": "serverless offline start",
+    "local:db:migrate": "node scripts/migrate.js",
+    "dynamodb-local": "sls dynamodb install",
+    "start": "ts-node-dev --respawn src/index.ts",
+    "test": "ts-node-dev --respawn src/**/*.spec.ts",
+    "build": "rm -rf dist && tsc",
+    "sls:deploy": "serverless deploy",
+    "sls:logs": "serverless logs -f PollenFunction",
+    "sls:test": "curl -X POST ${FUNCTION_URL}/dev/log -H 'Content-Type: application/json' -d '{\"userId\":\"U123\", \"userLocation\":{\"latitude\":\"32.32\",\"longitude\":\"35.32\"}}'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "googleapis": "^134.0.0",
+    "redis": "^4.6.13"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.137",
+    "@types/node": "^20.12.3",
+    "serverless": "^3.38.0",
+    "serverless-dynamodb": "^0.2.51",
+    "serverless-offline": "^13.3.3",
+    "serverless-plugin-typescript": "^2.1.5",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.3"
+  }
+}

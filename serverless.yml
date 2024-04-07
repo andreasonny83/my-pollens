@@ -1,0 +1,182 @@
+service: my-pollens
+frameworkVersion: '3'
+configValidationMode: error
+useDotenv: true
+
+plugins:
+  - serverless-dynamodb
+  - serverless-offline
+  - serverless-plugin-typescript
+
+custom:
+  stage: '${self:provider.stage}'
+  table: '${self:service}-table-${self:custom.stage}'
+
+  serverless-dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      heapInitial: 200m
+      heapMax: 1g
+      convertEmptyValues: true
+      migrate: true
+      seed: true
+    seed:
+      domain:
+        sources:
+          - table: ${self:custom.table}
+            sources: [offline/migrations/seed.json]
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  runtime: nodejs18.x
+  timeout: 10
+
+functions:
+  PollenFunction:
+    handler: src/handler.handler
+    role: LambdaExecutionRole
+    package:
+      individually: false
+    environment:
+      GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
+      # REDIS_URL: ${env:REDIS_URL}
+      # REDIS_PORT: ${env:REDIS_PORT}
+      # FETCH_FUNCTION_NAME: ${self:service}-${self:provider.stage}-GoogleFetchFunction
+    events:
+      - http:
+          path: log
+          method: POST
+    # vpc:
+    #   securityGroupIds:
+    #     - !GetAtt LambdaExecutionSecurityGroup.GroupId
+    #   subnetIds:
+    #     - subnet-xxx
+    #     - subnet-xxx
+
+  # GoogleFetchFunction:
+  #   handler: src/google-fetch.handler
+  #   package:
+  #     individually: false
+  #   environment:
+  #     GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
+
+resources:
+  Resources:
+    LambdaExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: lambda-dynamodb-access
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - dynamodb:GetItem
+                    - dynamodb:PutItem
+                    - dynamodb:UpdateItem
+                    - dynamodb:DeleteItem
+                  Resource:
+                    Fn::Sub: arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${PollensTable}
+          - PolicyName: lambda-cloudwatch-logs
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                    - logs:TagResource
+                  Resource:
+                    - 'Fn::Join':
+                      - ':'
+                      -
+                        - 'arn:aws:logs'
+                        - Ref: 'AWS::Region'
+                        - Ref: 'AWS::AccountId'
+                        - 'log-group:/aws/lambda/${self:service}-${self:provider.stage}-PollenFunction:*'
+
+          # - PolicyName: lambda-redis-access
+          #   PolicyDocument:
+          #     Version: '2012-10-17'
+          #     Statement:
+          #       - Effect: Allow
+          #         Action:
+          #           - elasticache:DescribeCacheClusters
+          #           - elasticache:DescribeCacheParameters
+          #           - elasticache:DescribeCacheSecurityGroups
+          #           - elasticache:DescribeCacheSubnetGroups
+          #         Resource:
+          #           Fn::Sub: arn:aws:elasticache:${AWS::Region}:${AWS::AccountId}:cluster:${MyCacheCluster}
+          # - PolicyName: lambda-vpc-access
+          #   PolicyDocument:
+          #     Version: '2012-10-17'
+          #     Statement:
+          #       - Effect: Allow
+          #         Action:
+          #           - ec2:CreateNetworkInterface
+          #           - ec2:DescribeNetworkInterfaces
+          #           - ec2:DeleteNetworkInterface
+          #         Resource: '*'
+          # - PolicyName: lambda-invoke-access
+          #   PolicyDocument:
+          #     Version: '2012-10-17'
+          #     Statement:
+          #       - Effect: Allow
+          #         Action:
+          #           - lambda:*
+          #         Resource: "*"
+
+    PollensTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.table}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    # LambdaExecutionSecurityGroup:
+    #   Type: AWS::EC2::SecurityGroup
+    #   Properties:
+    #     GroupDescription: Security group for Lambda function
+    #     VpcId: ${env:VPC_ID}
+
+    # MySecurityGroup:
+    #   Type: AWS::EC2::SecurityGroup
+    #   Properties:
+    #     GroupDescription: Security group for Lambda function to access ElastiCache
+    #     VpcId: ${env:VPC_ID}
+    #     SecurityGroupIngress:
+    #       - IpProtocol: tcp
+    #         FromPort: 6379 # Redis port
+    #         ToPort: ${env:REDIS_PORT} # Redis port from .env. Make sure it's defined as a number
+    #         SourceSecurityGroupId:
+    #           Fn::GetAtt: [LambdaExecutionSecurityGroup, GroupId]
+
+    # MyCacheCluster:
+    #   Type: AWS::ElastiCache::CacheCluster
+    #   Properties:
+    #     CacheNodeType: cache.t2.micro
+    #     Engine: redis
+    #     NumCacheNodes: 1
+    #     VpcSecurityGroupIds:
+    #       - !GetAtt MySecurityGroup.GroupId
+    #     CacheSubnetGroupName: default

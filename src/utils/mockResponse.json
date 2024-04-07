@@ -1,0 +1,115 @@
+{
+  "dailyInfo": [
+    {
+      "date": { "year": 2024, "month": 4, "day": 3 },
+      "pollenTypeInfo": [
+        {
+          "code": "GRASS",
+          "displayName": "Grass",
+          "inSeason": true,
+          "indexInfo": {
+            "code": "UPI",
+            "displayName": "Universal Pollen Index",
+            "value": 1,
+            "category": "Very Low",
+            "indexDescription": "People with very high allergy to pollen are likely to experience symptoms"
+          },
+          "healthRecommendations": ["Pollen levels are very low right now. It's a great day to enjoy the outdoors!"]
+        },
+        {
+          "code": "TREE",
+          "displayName": "Tree",
+          "inSeason": true,
+          "indexInfo": {
+            "code": "UPI",
+            "displayName": "Universal Pollen Index",
+            "value": 2,
+            "category": "Low",
+            "indexDescription": "People with high allergy to pollen are likely to experience symptoms"
+          },
+          "healthRecommendations": [
+            "It's a good day for outdoor activities since pollen levels are low.",
+            "Do you know which plants cause your pollen allergy? Check out the pollen data to be prepared."
+          ]
+        },
+        { "code": "WEED", "displayName": "Weed" }
+      ],
+      "plantInfo": [
+        {
+          "code": "BIRCH",
+          "displayName": "Birch",
+          "inSeason": true,
+          "indexInfo": {
+            "code": "UPI",
+            "displayName": "Universal Pollen Index",
+            "value": 1,
+            "category": "Very Low",
+            "indexDescription": "People with very high allergy to pollen are likely to experience symptoms"
+          },
+          "plantDescription": {
+            "type": "TREE",
+            "family": "Betulaceae (the Birch family)",
+            "season": "Late winter, spring",
+            "crossReaction": "Alder, Hazel, Hornbeam, Beech, Willow, and Oak pollen. In addition, there may be a higher risk for food allergies like hazelnuts, almonds, peanuts, pears, apples, cherries and carrots."
+          }
+        },
+        {
+          "code": "OLIVE",
+          "displayName": "Olive",
+          "inSeason": true,
+          "indexInfo": {
+            "code": "UPI",
+            "displayName": "Universal Pollen Index",
+            "value": 2,
+            "category": "Low",
+            "indexDescription": "People with high allergy to pollen are likely to experience symptoms"
+          },
+          "plantDescription": {
+            "type": "TREE",
+            "family": "Oleaceae (the Olive family)",
+            "season": "Late spring, early summer",
+            "crossReaction": "Ash and Privet pollen."
+          }
+        },
+        {
+          "code": "GRAMINALES",
+          "displayName": "Grasses",
+          "inSeason": true,
+          "indexInfo": {
+            "code": "UPI",
+            "displayName": "Universal Pollen Index",
+            "value": 1,
+            "category": "Very Low",
+            "indexDescription": "People with very high allergy to pollen are likely to experience symptoms"
+          },
+          "plantDescription": {
+            "type": "GRASS",
+            "family": "Poaceae",
+            "season": "Late spring, summer",
+            "crossReaction": "Plantain (Plantago) pollen. In addition, there may be a higher risk for food allergies like melons, oranges, tomatoes, peanuts, soy, potato, and other legumes."
+          }
+        },
+        { "code": "RAGWEED", "displayName": "Ragweed" },
+        {
+          "code": "ALDER",
+          "displayName": "Alder",
+          "inSeason": false,
+          "indexInfo": {
+            "code": "UPI",
+            "displayName": "Universal Pollen Index",
+            "value": 1,
+            "category": "Very Low",
+            "indexDescription": "People with very high allergy to pollen are likely to experience symptoms"
+          },
+          "plantDescription": {
+            "type": "TREE",
+            "family": "Betulaceae (the Birch family)",
+            "season": "Late winter, early spring",
+            "crossReaction": "Birch, Hazel, Hornbeam, Beech, Willow and Oak pollen."
+          }
+        },
+        { "code": "MUGWORT", "displayName": "Mugwort" }
+      ]
+    }
+  ]
+}

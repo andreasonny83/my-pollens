@@ -1,0 +1,114 @@
+[
+  {
+    "id": "PT001",
+    "code": "GRASS",
+    "displayName": "Grass",
+    "indexCode": "UPI",
+    "indexDisplayName": "Universal Pollen Index"
+  },
+  {
+    "id": "PT002",
+    "code": "TREE",
+    "displayName": "Tree",
+    "indexCode": "UPI",
+    "indexDisplayName": "Universal Pollen Index"
+  },
+  {
+    "id": "PT003",
+    "code": "WEED",
+    "displayName": "Weed"
+  },
+  {
+    "id": "PI001",
+    "code": "BIRCH",
+    "displayName": "Birch",
+    "indexCode": "UPI",
+    "indexDisplayName": "Universal Pollen Index",
+    "type": "TREE",
+    "family": "Betulaceae (the Birch family)",
+    "season": "Late winter, spring",
+    "crossReaction": "Alder, Hazel, Hornbeam, Beech, Willow, and Oak pollen. In addition, there may be a higher risk for food allergies like hazelnuts, almonds, peanuts, pears, apples, cherries and carrots."
+  },
+  {
+    "id": "PI002",
+    "code": "OLIVE",
+    "displayName": "Olive",
+    "indexCode": "UPI",
+    "indexDisplayName": "Universal Pollen Index",
+    "type": "TREE",
+    "family": "Oleaceae (the Olive family)",
+    "season": "Late spring, early summer",
+    "crossReaction": "Ash and Privet pollen."
+  },
+  {
+    "id": "PI003",
+    "code": "GRAMINALES",
+    "displayName": "Grasses",
+    "indexCode": "UPI",
+    "indexDisplayName": "Universal Pollen Index",
+    "type": "GRASS",
+    "family": "Poaceae",
+    "season": "Late spring, summer",
+    "crossReaction": "Plantain (Plantago) pollen. In addition, there may be a higher risk for food allergies like melons, oranges, tomatoes, peanuts, soy, potato, and other legumes."
+  },
+  {
+    "id": "PI004",
+    "code": "RAGWEED",
+    "displayName": "Ragweed"
+  },
+  {
+    "id": "PI005",
+    "code": "ALDER",
+    "displayName": "Alder",
+    "indexCode": "UPI",
+    "indexDisplayName": "Universal Pollen Index",
+    "type": "TREE",
+    "family": "Betulaceae (the Birch family)",
+    "season": "Late winter, early spring",
+    "crossReaction": "Birch, Hazel, Hornbeam, Beech, Willow and Oak pollen."
+  },
+  {
+    "id": "PI006",
+    "code": "MUGWORT",
+    "displayName": "Mugwort"
+  },
+  {
+    "id": "PE001",
+    "date": "2019-01-01",
+    "allergyLv": "1",
+    "pollenTypeInfo": [
+      {
+        "pollenTypeID": "PT001",
+        "value": 1
+      },
+      {
+        "pollenTypeID": "PT002",
+        "value": 2
+      }
+    ],
+    "plantInfo": [
+      {
+        "plantInfoID": "PI001",
+        "value": 1
+      },
+      {
+        "plantInfoID": "PI002",
+        "value": 2
+      },
+      {
+        "plantInfoID": "PI003",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "id": "UD001",
+    "date": "2019-01-01",
+    "allergyLv": "1",
+    "pollenEntry": "PE001"
+  },
+  {
+    "id": "u001",
+    "entries": ["UD001", "UD002"]
+  }
+]
